@@ -1,4 +1,4 @@
 export default {
   API_ENDPOINT: `https://tf-ed-bookmarks-api.herokuapp.com/v3/bookmarks`,
-  API_KEY: '$2a$10$ra1z0n2XnSnbMP/ipTMHeOqqrI7i8Rssm/z8MHTxgb7LamV7LpfXu',
+  API_KEY: '$2a$10$uyKV0SLZqYwL7i9LGrP1vObuap3Uo0lfKZL7hBXW2z4Zv0W2pVnbO',
 }
