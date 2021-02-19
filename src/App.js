@@ -3,34 +3,11 @@ import { Route } from 'react-router-dom';
 import AddBookmark from './AddBookmark/AddBookmark';
 import BookmarkList from './BookmarkList/BookmarkList';
 import BookmarksContext from './BookmarksContext';
+import EditBookmark from './EditBookmark/EditBookmark'
 import Nav from './Nav/Nav';
-import config from './config';
+//import config from './config';
 import './App.css';
-import Rating from './Rating/Rating';
-
-const bookmarks = [
-  // {
-  //   id: 0,
-  //   title: 'Google',
-  //   url: 'http://www.google.com',
-  //   rating: '3',
-  //   desc: 'Internet-related services and products.'
-  // },
-  // {
-  //   id: 1,
-  //   title: 'Thinkful',
-  //   url: 'http://www.thinkful.com',
-  //   rating: '5',
-  //   desc: '1-on-1 learning to accelerate your way to a new high-growth tech career!'
-  // },
-  // {
-  //   id: 2,
-  //   title: 'Github',
-  //   url: 'http://www.github.com',
-  //   rating: '4',
-  //   desc: 'brings together the world\'s largest community of developers.'
-  // }
-];
+//import Rating from './Rating/Rating';
 
 class App extends Component {
   state = {
@@ -60,13 +37,16 @@ class App extends Component {
     })
   }
 
+  updateBookmark = updatedBookmark => {
+    this.setState({
+      bookmarks: this.state.bookmarks.map(bookmark => 
+        (bookmark.id !== updatedBookmark.id) ? bookmark: updatedBookmark)
+    })
+  }
+
   componentDidMount() {
-    fetch(config.API_ENDPOINT, {
+    fetch('http://localhost:8000/api/bookmark', {
       method: 'GET',
-      headers: {
-        'content-type': 'application/json',
-        'Authorization': `Bearer ${config.API_KEY}`
-      }
     })
       .then(res => {
         if (!res.ok) {
@@ -83,10 +63,10 @@ class App extends Component {
       bookmarks: this.state.bookmarks,
       addBookmark: this.addBookmark,
       deleteBookmark: this.deleteBookmark,
+      updateBookmark: this.updateBookmark,
     }
     return (
       <main className='App'>
-        <Rating />
         <h1>Bookmarks!</h1>
         <BookmarksContext.Provider value={contextValue}>
           <Nav />
@@ -99,6 +79,10 @@ class App extends Component {
               exact
               path='/'
               component={BookmarkList}
+            />
+            <Route 
+              path='/edit/:bookmark_id'
+              component={EditBookmark}
             />
           </div>
         </BookmarksContext.Provider>
