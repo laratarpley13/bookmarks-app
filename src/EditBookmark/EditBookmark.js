@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import BookmarksContext from '../BookmarksContext';
 import PropTypes from 'prop-types';
+import config from '../config';
 
 export default class EditBookmark extends Component {
     static propTypes = {
@@ -25,7 +26,7 @@ export default class EditBookmark extends Component {
     componentDidMount() {
         const bookmarkId = this.props.match.params.bookmark_id
         console.log(bookmarkId)
-        fetch(`http://localhost:8000/api/bookmark/${bookmarkId}`, {
+        fetch(config.API_ENDPOINT + `/${bookmarkId}`, {
             method: 'GET'
         })
             .then(res => {
@@ -72,7 +73,7 @@ export default class EditBookmark extends Component {
         const { id, title, url, description, rating } = this.state
         const newBookmark = { id, title, url, description, rating }
 
-        fetch(`http://localhost:8000/api/bookmark/${bookmarkId}`, {
+        fetch(config.API_ENDPOINT + `/${bookmarkId}`, {
             method: 'PATCH',
             body: JSON.stringify(newBookmark),
             headers: {

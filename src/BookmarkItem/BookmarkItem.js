@@ -1,12 +1,12 @@
 import React from 'react';
 import Rating from '../Rating/Rating';
 import BookmarksContext from '../BookmarksContext';
-//import config from '../config';
+import config from '../config';
 import './BookmarkItem.css';
 import { Link } from 'react-router-dom';
 
 function deleteBookmarkRequest(bookmarkId, callback) {
-  fetch(`http://localhost:8000/api/bookmark/${bookmarkId}`, {
+  fetch(config.API_ENDPOINT + `/${bookmarkId}`, {
     method: 'DELETE',
     headers: {
       'content-type': 'application/json'

@@ -5,7 +5,7 @@ import BookmarkList from './BookmarkList/BookmarkList';
 import BookmarksContext from './BookmarksContext';
 import EditBookmark from './EditBookmark/EditBookmark'
 import Nav from './Nav/Nav';
-//import config from './config';
+import config from './config';
 import './App.css';
 //import Rating from './Rating/Rating';
 
@@ -45,7 +45,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    fetch('http://localhost:8000/api/bookmark', {
+    fetch(config.API_ENDPOINT, {
       method: 'GET',
     })
       .then(res => {
