@@ -1,4 +1,4 @@
 export default {
-  API_ENDPOINT: `http://localhost:8000/api/bookmark`,
+  API_ENDPOINT: `https://boiling-anchorage-64240.herokuapp.com/`,
   API_KEY: process.env.REACT_APP_API_KEY,
 }
